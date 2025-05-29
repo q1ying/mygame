@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv4mnj8d01bir"]
+
+[ext_resource type="Script" uid="uid://dpdquv2q3cxkg" path="res://Scripts/enemy/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Script" uid="uid://3u66cb4a4hqt" path="res://Scripts/Core/Hitbox.gd" id="2_287tu"]
+[ext_resource type="Script" uid="uid://cmyjemwoupgsj" path="res://Scripts/Core/StateMachine.gd" id="2_afpow"]
+[ext_resource type="Script" uid="uid://dapsb5f8qy5ai" path="res://Scripts/Core/HurtBox.gd" id="3_287tu"]
+[ext_resource type="Script" uid="uid://d3y4dtnx7eujc" path="res://Scripts/components/HealthComponent.gd" id="5_0830c"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_1f0kj")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+
+[node name="Hitbox" type="Area2D" parent="Graphics"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_287tu")
+metadata/_custom_type_script = "uid://3u66cb4a4hqt"
+
+[node name="Hurtbox" type="Area2D" parent="Graphics"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_287tu")
+metadata/_custom_type_script = "uid://dapsb5f8qy5ai"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_afpow")
+metadata/_custom_type_script = "uid://cmyjemwoupgsj"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_0830c")
+metadata/_custom_type_script = "uid://d3y4dtnx7eujc"
