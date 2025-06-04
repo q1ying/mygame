@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://bo776g7juvae5"]
+
+[ext_resource type="Script" uid="uid://dmxnl7mldxfrq" path="res://Scripts/UI/status_panel.gd" id="1_vk8cj"]
+[ext_resource type="Texture2D" uid="uid://vpgm5vsaou8b" path="res://Assets/MediavelFree.png" id="2_iav42"]
+[ext_resource type="Texture2D" uid="uid://bh5m6265nvtsl" path="res://Assets/主角/adventurer-v1.5-Sheet.png" id="3_ldxaj"]
+[ext_resource type="Texture2D" uid="uid://bldamda7hybu4" path="res://Assets/GUI.png" id="4_fp1nr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_moavk"]
+content_margin_top = 1.0
+content_margin_bottom = 3.0
+texture = ExtResource("2_iav42")
+region_rect = Rect2(3, 22, 71, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuft4"]
+atlas = ExtResource("3_ldxaj")
+region = Rect2(14, 6, 18, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mctm"]
+atlas = ExtResource("4_fp1nr")
+region = Rect2(72, 22, 49, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqvlw"]
+atlas = ExtResource("4_fp1nr")
+region = Rect2(135, 20, 52, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgh4v"]
+atlas = ExtResource("4_fp1nr")
+region = Rect2(6, 22, 49, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh7oj"]
+atlas = ExtResource("4_fp1nr")
+region = Rect2(72, 6, 42, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4t6a"]
+atlas = ExtResource("4_fp1nr")
+region = Rect2(135, 4, 45, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpwyq"]
+atlas = ExtResource("4_fp1nr")
+region = Rect2(8, 6, 42, 3)
+
+[node name="StatusPanel" type="HBoxContainer"]
+theme_override_constants/separation = 1
+script = ExtResource("1_vk8cj")
+
+[node name="AvatarBox" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_moavk")
+
+[node name="Avatar" type="TextureRect" parent="AvatarBox"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tuft4")
+stretch_mode = 5
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="V"]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 0.5
+texture_progress = SubResource("AtlasTexture_3mctm")
+
+[node name="EasedHealthBar" type="TextureProgressBar" parent="V/HealthBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 0.9
+texture_under = SubResource("AtlasTexture_sqvlw")
+texture_progress = SubResource("AtlasTexture_tgh4v")
+texture_progress_offset = Vector2(1, 2)
+
+[node name="ManaBar" type="TextureProgressBar" parent="V"]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 0.8
+texture_progress = SubResource("AtlasTexture_sh7oj")
+
+[node name="EasedManaBar" type="TextureProgressBar" parent="V/ManaBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.0
+value = 0.9
+texture_under = SubResource("AtlasTexture_d4t6a")
+texture_progress = SubResource("AtlasTexture_vpwyq")
+texture_progress_offset = Vector2(1, 2)

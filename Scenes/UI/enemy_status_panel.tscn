@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://crruo66rxeo3x"]
+
+[ext_resource type="Script" uid="uid://c3f614h4peetm" path="res://Scripts/UI/enemy_status_panel.gd" id="1_1xmmc"]
+[ext_resource type="Texture2D" uid="uid://bldamda7hybu4" path="res://Assets/GUI.png" id="2_6mtuo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f61lu"]
+atlas = ExtResource("2_6mtuo")
+region = Rect2(135, 20, 52, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38xcw"]
+atlas = ExtResource("2_6mtuo")
+region = Rect2(72, 22, 49, 3)
+
+[node name="enemy_status_panel" type="HBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+offset_right = 30.0
+offset_bottom = 3.0
+size_flags_vertical = 4
+script = ExtResource("1_1xmmc")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 0.5
+texture_under = SubResource("AtlasTexture_f61lu")
+texture_progress = SubResource("AtlasTexture_38xcw")
+texture_progress_offset = Vector2(1, 2)
