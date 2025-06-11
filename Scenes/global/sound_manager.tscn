@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpa8xi3sgmn4s"]
+
+[ext_resource type="Script" uid="uid://bdt3b12ds041c" path="res://Scripts/Core/sound_manager.gd" id="1_10gd2"]
+[ext_resource type="AudioStream" uid="uid://cy1y1ocbkkv7m" path="res://Assets/音效/uI按下.wav" id="2_1h6bw"]
+[ext_resource type="AudioStream" uid="uid://cach77qiuh0ui" path="res://Assets/音效/ui聚焦.wav" id="3_7qgfe"]
+[ext_resource type="AudioStream" uid="uid://lao71bbmsq5r" path="res://Assets/音效/受击.wav" id="4_65n83"]
+[ext_resource type="AudioStream" uid="uid://bwxof1g2l1cur" path="res://Assets/音效/技能.wav" id="6_lu31i"]
+[ext_resource type="AudioStream" uid="uid://boi6c30r87qsy" path="res://Assets/音效/技能最后一击.wav" id="7_stky7"]
+[ext_resource type="AudioStream" uid="uid://buedsa3w6venm" path="res://Assets/音效/普攻.wav" id="8_3a61n"]
+[ext_resource type="AudioStream" uid="uid://csg76u4ccu2lc" path="res://Assets/音效/死亡.wav" id="9_3rpif"]
+[ext_resource type="AudioStream" uid="uid://djb52ts5vrw2j" path="res://Assets/音效/跳跃.wav" id="11_i3kyb"]
+
+[node name="soundManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_10gd2")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"BGM"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="UIPress" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_1h6bw")
+bus = &"SFX"
+
+[node name="UIFocus" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_7qgfe")
+bus = &"SFX"
+
+[node name="hurt" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_65n83")
+bus = &"SFX"
+
+[node name="skill" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_lu31i")
+bus = &"SFX"
+
+[node name="parry" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_stky7")
+bus = &"SFX"
+
+[node name="attack" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_3a61n")
+bus = &"SFX"
+
+[node name="die" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("9_3rpif")
+bus = &"SFX"
+
+[node name="jump" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_i3kyb")

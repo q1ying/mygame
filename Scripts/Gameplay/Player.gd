@@ -58,6 +58,9 @@ var interacting_with: Array[Interactable]
 @onready var health_component: HealthComponent = Game.health_component
 @onready var mana_component: ManaComponent = Game.mana_component
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
+@onready var gameover: Control = $CanvasLayer/Gameover
+@onready var pause_screen: Control = $CanvasLayer/PauseScreen
+
 
 func _ready() -> void:
 	add_to_group("players")
@@ -78,6 +81,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("interact") and interacting_with:
 		interacting_with.back().interact()
+		
+	if event.is_action_pressed("pause"):
+		pause_screen.show_pause()
 
 func tick_physics(state:State, delta: float) -> void:
 	interaction_icon.visible = not interacting_with.is_empty()
@@ -132,7 +138,7 @@ func move(gravity:float, delta: float) -> void:
 	move_and_slide()
 	
 func die() -> void:
-	get_tree().reload_current_scene()
+	gameover.show_game_over()
 	
 func skill(delta: float) -> void:
 	velocity.x = graphics.scale.x * SKILL_SPEED
@@ -252,6 +258,7 @@ func transition_state(from:State, to:State) ->void:
 			animation_player.play("run")
 		State.JUMP:
 			animation_player.play("jump")
+			SoundManager.play_sfx("jump")
 			velocity.y = JUMP_VELOCITY
 			coyote_timer.stop()
 			jump_request_timer.stop()
@@ -261,33 +268,38 @@ func transition_state(from:State, to:State) ->void:
 				coyote_timer.start()
 		State.ATTACK_1:
 			animation_player.play("attack_1")
+			SoundManager.play_sfx("attack")
 			is_combo_requested = false
 		
 		State.ATTACK_2:
 			animation_player.play("attack_2")
+			SoundManager.play_sfx("attack")
 			is_combo_requested = false
 			
 		State.HURT:
 			animation_player.play("hurt")
+			SoundManager.play_sfx("hurt")
 			health_component.health -= pending_damage.amount
 			var dir := pending_damage.source.global_position.direction_to(global_position)
 			velocity = dir * KNOCKBACK_AMOUNT
-			
+					
 			pending_damage = null
 			invincible_timer.start()
 		State.DIE:
 			animation_player.play("die")
+			SoundManager.play_sfx("die")
 			invincible_timer.stop()
 			interacting_with.clear()
 			
 		State.SKILL:
 			animation_player.play("skill")
+			SoundManager.play_sfx("skill")
 			mana_component.mana -= SKILL_MANA
 			skill_launched = false
 		State.PARRY:
 			animation_player.play("parry")
+			SoundManager.play_sfx("parry")
 			
-	
 	is_first_tick = true
 
 
@@ -303,13 +315,14 @@ func _on_hurtbox_hurt(hitbox: Variant) -> void:
 	if invincible_timer.time_left > 0:
 		return
 	
-	pending_damage = Damage.new()
-	if hitbox.hitbox_type == 0:
-		pending_damage.amount = ATTACK_DAMAGE
-	if hitbox.hitbox_type == 1:
-		pending_damage.amount = SKILL_DAMAGE
+	if not is_parry_skill:
+		pending_damage = Damage.new()
+		if hitbox.hitbox_type == 0:
+			pending_damage.amount = ATTACK_DAMAGE
+		if hitbox.hitbox_type == 1:
+			pending_damage.amount = SKILL_DAMAGE
 
-	pending_damage.source = hitbox.owner
+		pending_damage.source = hitbox.owner
 
 
 func _on_skillbox_skill(parrybox: Variant) -> void:

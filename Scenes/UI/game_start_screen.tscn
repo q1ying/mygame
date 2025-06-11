@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ylqr5jbuo47l"]
+
+[ext_resource type="Script" uid="uid://i1vbecalqx4a" path="res://Scripts/UI/game_start_screen.gd" id="1_w5wj6"]
+[ext_resource type="FontFile" uid="uid://bs0d0uu3bl857" path="res://Assets/SmileySans-Oblique.otf" id="2_fcj5v"]
+
+[node name="game_start_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w5wj6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fcj5v")
+horizontal_alignment = 1
+vertical_alignment = 1

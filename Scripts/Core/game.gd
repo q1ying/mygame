@@ -1,16 +1,23 @@
 extends Node
 
 const SAVE_PATH := "user://data.sav"
+const MUSIC_CONFIG_PATH := "user://music_config.ini"
+const BASE_CONFIG_PATH := "user://base_config.ini"
 
-var passed_levels := []
-var current_world_states := {}
+#var passed_levels := []
+#var current_world_states := {}
+var tutorial_completed := false 
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var mana_component: ManaComponent = $ManaComponent
 @onready var color_rect: ColorRect = $ColorRect
+@onready var default_health_component := health_component.to_dict()
+@onready var default_mana_component := mana_component.to_dict()
 
 func _ready() -> void:
 	color_rect.color.a = 0
+	load_music_config()
+	load_base_config()
 
 func change_scene(path: String, params := {}) -> void:
 	var tree := get_tree()
@@ -21,8 +28,11 @@ func change_scene(path: String, params := {}) -> void:
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	await tween.finished
 	
-	var passed_level := tree.current_scene.scene_file_path.get_file().get_basename()
-	passed_levels.append(passed_level)
+	#var passed_level := tree.current_scene.scene_file_path.get_file().get_basename()
+	#passed_levels.append(passed_level)
+	
+	if "init" in params:
+		params.init.call()
 	
 	tree.change_scene_to_file(path)
 	await tree.tree_changed
@@ -38,16 +48,17 @@ func change_scene(path: String, params := {}) -> void:
 			
 	tree.paused = false
 	tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(color_rect, "color:a", 0, 1)
 
 func save_game() -> void:
 	var scene := get_tree().current_scene
 	var scene_name := scene.scene_file_path.get_file().get_basename()
-	current_world_states[scene_name] = scene.to_dict()
+	#current_world_states[scene_name] = scene.to_dict()
 	
 	var data := {
-		passed_levels = passed_levels,
-		current_world_states = current_world_states,
+		#passed_levels = passed_levels,
+		#current_world_states = current_world_states,
 		health_component = health_component.to_dict(),
 		mana_component = mana_component.to_dict(),
 		scene = scene.scene_file_path,
@@ -73,18 +84,72 @@ func load_game() -> void:
 	var json := file.get_as_text()
 	var data := JSON.parse_string(json) as Dictionary
 	
-	passed_levels = data.passed_levels
-	current_world_states = data.current_world_states
-	health_component.from_dict(data.health_component)
-	mana_component.from_dict(data.mana_component)
 	change_scene(data.scene, {
-		direction = data.player.position.x,
+		direction = data.player.direction,
 		position = Vector2(
 			data.player.position.x,
 			data.player.position.y
-		)
+		),
+		init=func ():
+			#passed_levels = data.passed_levels
+			#current_world_states = data.current_world_states
+			health_component.from_dict(data.health_component)
+			mana_component.from_dict(data.mana_component)
 	})
+	
+func new_game() -> void:
+	change_scene("res://Scenes/level/level2.tscn", {
+		init=func ():
+			#passed_levels = []
+			#current_world_states = {}
+			health_component.from_dict(default_health_component)
+			mana_component.from_dict(default_mana_component)
+	})
+	
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		save_game()
+func back_to_title() -> void:
+	change_scene("res://Scenes/UI/titlescreen.tscn")
+
+func has_save() -> bool:
+	return FileAccess.file_exists(SAVE_PATH)
+	
+func save_music_config() -> void:
+	var config := ConfigFile.new()
+	
+	config.set_value("audio", "master", SoundManager.get_volume(SoundManager.Bus.Master))
+	config.set_value("audio", "SFX", SoundManager.get_volume(SoundManager.Bus.SFX))
+	config.set_value("audio", "BGM", SoundManager.get_volume(SoundManager.Bus.BGM))
+	
+	config.save(MUSIC_CONFIG_PATH)
+	
+func load_music_config() -> void:
+	var config := ConfigFile.new()
+	config.load(MUSIC_CONFIG_PATH)
+	
+	SoundManager.set_volume(
+		SoundManager.Bus.Master,
+		config.get_value("audio", "master", 0.5)
+	)
+	SoundManager.set_volume(
+		SoundManager.Bus.SFX,
+		config.get_value("audio", "SFX", 1.0)
+	)
+	SoundManager.set_volume(
+		SoundManager.Bus.BGM,
+		config.get_value("audio", "BGM", 1.0)
+	)
+	
+func save_base_config() -> void:
+	var config := ConfigFile.new()
+	
+	config.set_value("base", "tutorial_completed", true)
+	tutorial_completed = true
+	
+	config.save(BASE_CONFIG_PATH)
+
+func load_base_config() -> void:
+	var config := ConfigFile.new()
+	
+	config.load(BASE_CONFIG_PATH)
+	
+	tutorial_completed = config.get_value("base", "tutorial_completed", false)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=4 uid="uid://ryhi0h4c577c"]
+[gd_scene load_steps=29 format=4 uid="uid://ryhi0h4c577c"]
 
 [ext_resource type="Script" uid="uid://m8brhvd5lk8i" path="res://Scripts/Core/level2.gd" id="1_8uf1l"]
+[ext_resource type="AudioStream" uid="uid://dvg7hhi05hy3a" path="res://Assets/stone fortress.ogg" id="2_b1063"]
 [ext_resource type="PackedScene" uid="uid://cov1cfiycc68x" path="res://Scenes/Player.tscn" id="2_vahl8"]
 [ext_resource type="Texture2D" uid="uid://d23irpxpjeria" path="res://Assets/oak_woods_tileset.png" id="3_7j0mb"]
 [ext_resource type="Texture2D" uid="uid://dvdkj012riqnp" path="res://Assets/decorations/lamp.png" id="4_ynn2s"]
@@ -17,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cfc4qin2pkpsl" path="res://Assets/background/background_layer_3.png" id="16_ryatg"]
 [ext_resource type="PackedScene" uid="uid://tocj3hn3603v" path="res://Scenes/mushroom.tscn" id="17_hb8x7"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idj7w"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1063"]
 texture = ExtResource("3_7j0mb")
 texture_region_size = Vector2i(24, 24)
 5:0/0 = 0
@@ -200,55 +201,55 @@ texture_region_size = Vector2i(24, 24)
 15:1/0/terrain_set = 0
 15:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.0074, -8.09364, 8, -8, 7.73392, 15.6477, -16.1873, 16.0074)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fq0cl"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8uf1l"]
 texture = ExtResource("4_ynn2s")
 texture_region_size = Vector2i(23, 57)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(1, 5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwpts"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vahl8"]
 texture = ExtResource("5_fh1ok")
 texture_region_size = Vector2i(8, 3)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -6)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyqft"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7j0mb"]
 texture = ExtResource("6_hvgy8")
 texture_region_size = Vector2i(10, 5)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3tgeq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynn2s"]
 texture = ExtResource("7_swydt")
 texture_region_size = Vector2i(9, 4)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -6)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4ay3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh1ok"]
 texture = ExtResource("8_5y2p2")
 texture_region_size = Vector2i(20, 11)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -2)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aht7i"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hvgy8"]
 texture = ExtResource("9_wsn7v")
 texture_region_size = Vector2i(27, 12)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -2)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5jffn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swydt"]
 texture = ExtResource("10_4hm25")
 texture_region_size = Vector2i(45, 18)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kpo4j"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5y2p2"]
 texture = ExtResource("11_py1dj")
 texture_region_size = Vector2i(22, 31)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4n42c"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wsn7v"]
 texture = ExtResource("12_cnw2g")
 texture_region_size = Vector2i(18, 19)
 0:0/0 = 0
@@ -267,19 +268,20 @@ terrain_set_0/terrain_0/name = "yellowfloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "plant"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_idj7w")
-sources/1 = SubResource("TileSetAtlasSource_fq0cl")
-sources/2 = SubResource("TileSetAtlasSource_c4ay3")
-sources/3 = SubResource("TileSetAtlasSource_aht7i")
-sources/4 = SubResource("TileSetAtlasSource_5jffn")
-sources/5 = SubResource("TileSetAtlasSource_kpo4j")
-sources/6 = SubResource("TileSetAtlasSource_4n42c")
-sources/10 = SubResource("TileSetAtlasSource_hwpts")
-sources/11 = SubResource("TileSetAtlasSource_jyqft")
-sources/12 = SubResource("TileSetAtlasSource_3tgeq")
+sources/0 = SubResource("TileSetAtlasSource_b1063")
+sources/1 = SubResource("TileSetAtlasSource_8uf1l")
+sources/2 = SubResource("TileSetAtlasSource_fh1ok")
+sources/3 = SubResource("TileSetAtlasSource_hvgy8")
+sources/4 = SubResource("TileSetAtlasSource_swydt")
+sources/5 = SubResource("TileSetAtlasSource_5y2p2")
+sources/6 = SubResource("TileSetAtlasSource_wsn7v")
+sources/10 = SubResource("TileSetAtlasSource_vahl8")
+sources/11 = SubResource("TileSetAtlasSource_7j0mb")
+sources/12 = SubResource("TileSetAtlasSource_ynn2s")
 
 [node name="level2" type="Node2D"]
 script = ExtResource("1_8uf1l")
+bgm = ExtResource("2_b1063")
 metadata/_edit_horizontal_guides_ = [-100.0]
 metadata/_edit_vertical_guides_ = [-309.0, 837.0]
 

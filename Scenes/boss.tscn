@@ -1195,7 +1195,6 @@ target_position = Vector2(75, 0)
 collision_mask = 3
 
 [node name="Hitbox_skill" type="Area2D" parent="Graphics" index="4"]
-visible = false
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("4_q76ad")
@@ -1216,9 +1215,6 @@ disabled = true
 position = Vector2(15, -22)
 shape = SubResource("RectangleShape2D_wt2fp")
 disabled = true
-
-[node name="Hurtbox" parent="Graphics" index="6"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
 position = Vector2(1, -23)
@@ -1247,7 +1243,6 @@ shape = SubResource("RectangleShape2D_dn2xv")
 disabled = true
 
 [node name="CollisionShape2D" parent="." index="1"]
-visible = false
 position = Vector2(1, -22)
 shape = SubResource("CapsuleShape2D_sirps")
 

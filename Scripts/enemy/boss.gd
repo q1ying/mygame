@@ -157,7 +157,7 @@ func transition_state(from: State, to: State) -> void:
 			await get_tree().create_timer(0.4).timeout
 			if not animation_player.is_playing() and not is_parry_skill:
 				mana_component.mana -= PARRY_PUNISHMENT
-			is_parry_skill = false
+				is_parry_skill = false
 		State.DIE:
 			animation_player.play("die")
 		State.APPROACH:
@@ -237,12 +237,13 @@ func _action_to_state(action_name: String) -> int:
 func _on_hurtbox_hurt(hitbox: Hitbox) -> void:
 	if pending_damage != null:
 		return
-	pending_damage = Damage.new()
-	if hitbox.hitbox_type == 0:
-		pending_damage.amount = 500
-	if hitbox.hitbox_type == 1 and not is_parry_skill:
-		pending_damage.amount = 125
-	pending_damage.source = hitbox.owner
+	if not is_parry_skill:
+		pending_damage = Damage.new()
+		if hitbox.hitbox_type == 0:
+			pending_damage.amount = 500
+		if hitbox.hitbox_type == 1:
+			pending_damage.amount = 125
+		pending_damage.source = hitbox.owner
 
 func _on_skillbox_skill(parrybox: Variant) -> void:
 	pending_damage = Damage.new()

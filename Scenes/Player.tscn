@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cov1cfiycc68x"]
+[gd_scene load_steps=36 format=3 uid="uid://cov1cfiycc68x"]
 
 [ext_resource type="Script" uid="uid://sh5poejd1yyr" path="res://Scripts/Gameplay/Player.gd" id="1_rpqav"]
 [ext_resource type="Script" uid="uid://3u66cb4a4hqt" path="res://Scripts/Core/Hitbox.gd" id="4_xixlo"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://dgnoggxu1dca" path="res://Scripts/Core/ParryBox.gd" id="6_ksbbd"]
 [ext_resource type="PackedScene" uid="uid://bo776g7juvae5" path="res://Scenes/UI/status_panel.tscn" id="7_52ee3"]
 [ext_resource type="Texture2D" uid="uid://c2uqykyt0ctky" path="res://Assets/586.png" id="7_ksbbd"]
+[ext_resource type="PackedScene" uid="uid://cxqi7pfmssw4l" path="res://Scenes/UI/gameover.tscn" id="10_ksbbd"]
+[ext_resource type="PackedScene" uid="uid://d3lob0e1ebkhc" path="res://Scenes/UI/pause_screen.tscn" id="11_glx4g"]
 [ext_resource type="Texture2D" uid="uid://c4mn1ylwgoffv" path="res://Assets/Keyboard White.png" id="12_glx4g"]
 [ext_resource type="Script" uid="uid://cmyjemwoupgsj" path="res://Scripts/Core/StateMachine.gd" id="68_uytvf"]
 [ext_resource type="Script" uid="uid://dapsb5f8qy5ai" path="res://Scripts/Core/HurtBox.gd" id="69_s7lb4"]
@@ -2472,7 +2474,6 @@ region_enabled = true
 region_rect = Rect2(0, 448, 768, 64)
 
 [node name="Hurtbox" type="Area2D" parent="Graphics"]
-visible = false
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("69_s7lb4")
@@ -2483,7 +2484,6 @@ position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_ed4yo")
 
 [node name="Hitbox_skill" type="Area2D" parent="Graphics"]
-visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("4_xixlo")
@@ -2506,7 +2506,6 @@ shape = SubResource("RectangleShape2D_yoq75")
 disabled = true
 
 [node name="Hitbox_attack" type="Area2D" parent="Graphics"]
-visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("4_xixlo")
@@ -2523,7 +2522,6 @@ shape = SubResource("RectangleShape2D_wosd6")
 disabled = true
 
 [node name="Skillbox" type="Area2D" parent="Graphics"]
-visible = false
 collision_layer = 0
 collision_mask = 64
 script = ExtResource("5_yoq75")
@@ -2556,7 +2554,6 @@ shape = SubResource("CircleShape2D_glx4g")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_i10l2")
 
@@ -2588,6 +2585,10 @@ offset_left = 11.0
 offset_top = 8.0
 offset_right = 99.0
 offset_bottom = 40.0
+
+[node name="Gameover" parent="CanvasLayer" instance=ExtResource("10_ksbbd")]
+
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("11_glx4g")]
 
 [node name="InteractionIcon" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -61)

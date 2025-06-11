@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var bgm: AudioStream
+
 @onready var camera_2d: Camera2D = $Player/Camera2D
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var TeleporterScene : PackedScene = preload("res://Scenes/UI/teleporter.tscn")
@@ -18,6 +20,9 @@ func _ready() -> void:
 	camera_2d.limit_left = used.position.x * tile_size.x
 	camera_2d.reset_smoothing()
 	
+	if bgm:
+		SoundManager.play_bgm(bgm)
+	
 func _physics_process(delta: float) -> void:
 	var enemies_list = get_tree().get_nodes_in_group("enemies")
 	if enemies_list.size() == 0 and not boss_spawned:
@@ -31,9 +36,9 @@ func _on_boss_boss_died() -> void:
 	add_child(teleporter)
 	teleporter.global_position = Vector2(1050, 180)
 
-func update_player(pos: Vector2) -> void:
+func update_player(pos: Vector2, direction: Player.Direction) -> void:
 	player.global_position = pos
-	player.fall_from_y = pos.y
+	player.direction = direction
 	camera_2d.reset_smoothing()
 	camera_2d.force_update_scroll()
 	
@@ -45,18 +50,18 @@ func _spawn_boss() -> void:
 	var cb = Callable(self, "_on_boss_boss_died")
 	boss.connect("boss_died", cb)
 
-func to_dict() -> Dictionary:
-	var enemies_alive := []
-	for node in get_tree().get_nodes_in_group("enemies"):
-		var path := get_path_to(node)
-		enemies_alive.append(path)
-	
-	return{
-		enemies_alive = enemies_alive
-	}
-	
-func from_dict(dict: Dictionary) -> void:
-	for node in get_tree().get_nodes_in_group("enemies"):
-		var path := get_path_to(node)
-		if path not in dict.enemies_alive:
-			node.queue_free()
+#func to_dict() -> Dictionary:
+	#var enemies_alive := []
+	#for node in get_tree().get_nodes_in_group("enemies"):
+		#var path := get_path_to(node)
+		#enemies_alive.append(path)
+	#
+	#return{
+		#enemies_alive = enemies_alive
+	#}
+	#
+#func from_dict(dict: Dictionary) -> void:
+	#for node in get_tree().get_nodes_in_group("enemies"):
+		#var path := get_path_to(node)
+		#if path not in dict.enemies_alive:
+			#node.queue_free()

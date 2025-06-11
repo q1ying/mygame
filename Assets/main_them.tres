@@ -1,0 +1,80 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cam2k5o3w3gc0"]
+
+[ext_resource type="Texture2D" uid="uid://bldamda7hybu4" path="res://Assets/GUI.png" id="1_24l86"]
+[ext_resource type="FontFile" uid="uid://bs0d0uu3bl857" path="res://Assets/SmileySans-Oblique.otf" id="1_56fc3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_24l86"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t8m2p"]
+texture = ExtResource("1_24l86")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(81, 97, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24l86"]
+atlas = ExtResource("1_24l86")
+region = Rect2(1, 81, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8m2p"]
+atlas = ExtResource("1_24l86")
+region = Rect2(17, 82, 14, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hdgj1"]
+texture = ExtResource("1_24l86")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(1, 81, 14, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24l86"]
+texture = ExtResource("1_24l86")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(50, 50, 44, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_smso8"]
+texture = ExtResource("1_24l86")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(50, 34, 44, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5vgli"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 6.0
+texture = ExtResource("1_24l86")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+region_rect = Rect2(2, 34, 44, 44)
+
+[resource]
+default_font = ExtResource("1_56fc3")
+Button/colors/font_outline_color = Color(0, 0.0666667, 0.2, 1)
+Button/constants/outline_size = 4
+Button/styles/disabled = SubResource("StyleBoxEmpty_24l86")
+Button/styles/focus = SubResource("StyleBoxTexture_t8m2p")
+Button/styles/hover = SubResource("StyleBoxEmpty_24l86")
+Button/styles/normal = SubResource("StyleBoxEmpty_24l86")
+Button/styles/pressed = SubResource("StyleBoxEmpty_24l86")
+HSlider/icons/grabber = SubResource("AtlasTexture_24l86")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_t8m2p")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_hdgj1")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_24l86")
+HSlider/styles/slider = SubResource("StyleBoxTexture_smso8")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_5vgli")
