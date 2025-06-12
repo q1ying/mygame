@@ -28,4 +28,4 @@ func _on_exit_game_pressed() -> void:
 	get_tree().quit()
 
 func _on_tutorial_pressed() -> void:
-	Game.change_scene("res://Scenes/level/level1.tscn")
+	Game.change_scene("res://Scenes/UI/game_start_screen.tscn")

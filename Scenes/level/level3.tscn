@@ -165,7 +165,7 @@ texture = ExtResource("6_ljxsv")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("7_y3qtj")]
-position = Vector2(232, 16)
+position = Vector2(72, 88)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -20)
@@ -180,3 +180,12 @@ drag_vertical_enabled = true
 
 [node name="mushroom" parent="." instance=ExtResource("8_hy4rf")]
 position = Vector2(400, 88)
+
+[node name="mushroom2" parent="." instance=ExtResource("8_hy4rf")]
+position = Vector2(816, 120)
+
+[node name="mushroom3" parent="." instance=ExtResource("8_hy4rf")]
+position = Vector2(1528, 88)
+
+[node name="mushroom4" parent="." instance=ExtResource("8_hy4rf")]
+position = Vector2(896, -160)

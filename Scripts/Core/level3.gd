@@ -22,10 +22,16 @@ func _ready() -> void:
 	if bgm:
 		SoundManager.play_bgm(bgm)
 
-func update_player(pos: Vector2) -> void:
+func update_player(pos: Vector2, direction: Player.Direction) -> void:
 	player.global_position = pos
+	player.direction = direction
 	camera_2d.reset_smoothing()
 	camera_2d.force_update_scroll()
+
+#func update_player(pos: Vector2) -> void:
+	#player.global_position = pos
+	#camera_2d.reset_smoothing()
+	#camera_2d.force_update_scroll()
 
 func _physics_process(delta: float) -> void:
 	var enemies_list = get_tree().get_nodes_in_group("enemies")

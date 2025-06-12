@@ -1,9 +1,11 @@
 extends Control
 
 const lines_list := [
-	"first",
-	"second",
-	"3",
+	"As the final shadow is pierced by the light, the Shadow Knight’s form slowly dissolves beneath the moon.",
+	"You approach the broken portal and touch the light gently; the ethereal blue energy gradually converges upon you.",
+	"In your ears, echoes of past battles grow clear—the softly whispered voices of fallen souls ask you:",
+	"Has your sacrifice brought salvation, or merely deepened the darkness?",
+	"Now, you must choose: to sacrifice yourself and ensure the kingdom’s dawn, or let the whispers of shadow echo forever."
 ]
 
 @export var bgm: AudioStream

@@ -286,7 +286,7 @@ metadata/_edit_horizontal_guides_ = [-100.0]
 metadata/_edit_vertical_guides_ = [-309.0, 837.0]
 
 [node name="Player" parent="." instance=ExtResource("2_vahl8")]
-position = Vector2(720, -24)
+position = Vector2(40, 88)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -25)
@@ -337,3 +337,9 @@ centered = false
 
 [node name="mushroom" parent="." instance=ExtResource("17_hb8x7")]
 position = Vector2(690, 66)
+
+[node name="mushroom2" parent="." instance=ExtResource("17_hb8x7")]
+position = Vector2(312, 160)
+
+[node name="mushroom3" parent="." instance=ExtResource("17_hb8x7")]
+position = Vector2(544, -112)

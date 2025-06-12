@@ -240,7 +240,7 @@ func _on_hurtbox_hurt(hitbox: Hitbox) -> void:
 	if not is_parry_skill:
 		pending_damage = Damage.new()
 		if hitbox.hitbox_type == 0:
-			pending_damage.amount = 500
+			pending_damage.amount = 50
 		if hitbox.hitbox_type == 1:
 			pending_damage.amount = 125
 		pending_damage.source = hitbox.owner

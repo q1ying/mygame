@@ -1,6 +1,16 @@
 extends Node
 
 const SAVE_PATH := "user://data.sav"
+var AES_KEY := PackedByteArray([
+	0x5A, 0xC3, 0x9F, 0x47,
+	0x1E, 0xD8, 0x6B, 0xA4,
+	0x0D, 0x73, 0xE1, 0x9B,
+	0x2F, 0x5D, 0x80, 0xC6,
+	0x37, 0x4A, 0x91, 0xBE,
+	0xA2, 0x54, 0x6F, 0xD1,
+	0x28, 0x3C, 0x8E, 0xF5,
+	0xB7, 0x02, 0x49, 0x6D
+])
 const MUSIC_CONFIG_PATH := "user://music_config.ini"
 const BASE_CONFIG_PATH := "user://base_config.ini"
 
@@ -40,7 +50,7 @@ func change_scene(path: String, params := {}) -> void:
 	if "entry_point" in params:
 		for node in tree.get_nodes_in_group("entry_points"):
 			if node.name == params.entry_point:
-				tree.current_scene.update_player(node.global_position)
+				tree.current_scene.update_player(node.global_position, node.direction)
 				break
 				
 	if "position" in params and "direction" in params:
@@ -71,13 +81,14 @@ func save_game() -> void:
 		},
 	}
 	var json := JSON.stringify(data)
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file := FileAccess.open_encrypted(SAVE_PATH, FileAccess.WRITE, AES_KEY)
+
 	if not file:
 		return
 	file.store_string(json)
 
 func load_game() -> void:
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var file := FileAccess.open_encrypted(SAVE_PATH, FileAccess.READ, AES_KEY)
 	if not file:
 		return
 		

@@ -1,6 +1,5 @@
 extends Area2D
 
-# 在 Inspector 填好要显示的一行文字
 @export var line: String = ""
 
 signal interacted

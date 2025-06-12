@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="正式游戏"
-run/main_scene="uid://ryhi0h4c577c"
+run/main_scene="uid://cev5hxxcif02i"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]

@@ -1,9 +1,10 @@
 extends Control
 
 const lines_list := [
-	"first",
-	"second",
-	"3",
+	"Night falls like ink, and the glory of the Moonshade Kingdom has become nothing but a fading memory. Corrupted shadows devour every inch of the land, and upon the altar, even the stars have dimmed.",
+	"You—bearing the ancestral sword and a heavy burden—step into this cursed world.",
+	"As darkness swirls around you, you sense that ahead lies either the dawn of redemption or the final judgment.",
+	"Darkness has fallen, dawn has yet to arrive, and your journey is the kingdom’s last hope."
 ]
 
 @export var bgm: AudioStream
@@ -28,7 +29,7 @@ func _input(event: InputEvent) -> void:
 			if current_line + 1< lines_list.size():
 				show_line(current_line + 1)
 			else:
-				Game.back_to_title()
+				Game.change_scene("res://Scenes/level/level1.tscn")
 				
 				
 func show_line(line: int) -> void:

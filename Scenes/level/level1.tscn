@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://rrjlmtoa606f"]
+[gd_scene load_steps=21 format=4 uid="uid://rrjlmtoa606f"]
 
 [ext_resource type="Script" uid="uid://cpvsdfsjm7qtn" path="res://Scripts/UI/tutorial_zone.gd" id="1_fmixv"]
 [ext_resource type="Script" uid="uid://cbeofdsel2a2x" path="res://Scripts/Core/level1.gd" id="1_ylr62"]
+[ext_resource type="AudioStream" uid="uid://dlfwn4napbxgr" path="res://Assets/music/level1.mp3" id="2_tji8i"]
 [ext_resource type="Script" uid="uid://bqcxh43i8tylt" path="res://Scripts/UI/tutorial_ui.gd" id="2_ylr62"]
 [ext_resource type="Theme" uid="uid://cam2k5o3w3gc0" path="res://Assets/main_them.tres" id="3_2fids"]
 [ext_resource type="PackedScene" uid="uid://cov1cfiycc68x" path="res://Scenes/Player.tscn" id="4_oq2ac"]
@@ -17,10 +18,10 @@
 size = Vector2(293, 161)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rulc7"]
-size = Vector2(262, 160)
+size = Vector2(258, 160)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxwfi"]
-size = Vector2(196, 161)
+size = Vector2(162, 161)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tji8i"]
 size = Vector2(220.5, 161)
@@ -149,11 +150,12 @@ sources/0 = SubResource("TileSetAtlasSource_qbafi")
 
 [node name="level1" type="Node2D"]
 script = ExtResource("1_ylr62")
+bgm = ExtResource("2_tji8i")
 
 [node name="Zone1" type="Area2D" parent="."]
 position = Vector2(107, 0)
 script = ExtResource("1_fmixv")
-line = "world"
+line = "Welcome to the Moonshade Kingdom, adventurer. Use \"A\" and \"D\" to move, spacebar to jump, press \"J\" for a normal attack, \"K\" for your skill, and \"L\" to execute a parry at crucial moments."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone1"]
 position = Vector2(195.5, 47.5)
@@ -161,25 +163,25 @@ shape = SubResource("RectangleShape2D_554mw")
 
 [node name="Zone2" type="Area2D" parent="."]
 script = ExtResource("1_fmixv")
-line = "hello"
+line = "Corrupted creatures approach—parrying (L) has no effect against these enemies' normal attacks, skillfully use movement and attacks to defeat them. Clear all foes to summon the Shadow Knight boss."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone2"]
-position = Vector2(642, 48)
+position = Vector2(640, 48)
 shape = SubResource("RectangleShape2D_rulc7")
 
 [node name="Zone3" type="Area2D" parent="."]
 position = Vector2(107, 0)
 script = ExtResource("1_fmixv")
-line = "world"
+line = "Use your air-strike ability (K) to perform a higher jump, allowing you to overcome such obstacles. This skill will be crucial during your adventure; master it well."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone3"]
-position = Vector2(789, 49)
+position = Vector2(806, 49)
 shape = SubResource("RectangleShape2D_nxwfi")
 
 [node name="Zone4" type="Area2D" parent="."]
 position = Vector2(303, 0)
 script = ExtResource("1_fmixv")
-line = "world"
+line = "When the training dummy unleashes its skill, press L at the exact moment to parry, dealing massive damage back to the enemy and fully negating the incoming damage. However,if your timing is off, your parry will fail, draining your Mana Points (MP). "
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone4"]
 position = Vector2(833.75, 49)
@@ -191,11 +193,14 @@ script = ExtResource("2_ylr62")
 [node name="Label" type="Label" parent="TutorialUI"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 49.0
+offset_left = 95.0
+offset_right = -2.0
+offset_bottom = 92.0
 grow_horizontal = 2
 theme = ExtResource("3_2fids")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Player" parent="." instance=ExtResource("4_oq2ac")]
 position = Vector2(187, 101)

@@ -52,11 +52,11 @@ var U_trans: Dictionary = {
 	"idle":     {"attack": 1.5, "skill": 1.3, "approach": 1.0, "retreat": 0.8},
 }
 
-var weave_bonus: Dictionary = {
-	["approach", "attack", "retreat"]: 1.5,
-	["retreat", "skill", "approach"]: 1.3,
-	["parry", "attack", "retreat"]: 1.2,
-}
+#var weave_bonus: Dictionary = {
+	#["approach", "attack", "retreat"]: 1.5,
+	#["retreat", "skill", "approach"]: 1.3,
+	#["parry", "attack", "retreat"]: 1.2,
+#}
 
 var all_sequences: Array = []
 

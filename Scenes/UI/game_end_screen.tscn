@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d11k83ghvwnar"]
+[gd_scene load_steps=5 format=3 uid="uid://d11k83ghvwnar"]
 
 [ext_resource type="Script" uid="uid://b8kkrd0dx0elp" path="res://Scripts/UI/game_end_screen.gd" id="1_0vvfm"]
 [ext_resource type="FontFile" uid="uid://bs0d0uu3bl857" path="res://Assets/SmileySans-Oblique.otf" id="1_1vlek"]
-[ext_resource type="AudioStream" uid="uid://dvg7hhi05hy3a" path="res://Assets/stone fortress.ogg" id="2_m6fuu"]
+[ext_resource type="AudioStream" uid="uid://dh08yodr85x4b" path="res://Assets/music/end.mp3" id="2_6hhvi"]
+[ext_resource type="Texture2D" uid="uid://clqdxj8r2r783" path="res://Assets/结束.png" id="3_6hhvi"]
 
 [node name="GameEndScreen" type="Control"]
 layout_mode = 3
@@ -12,9 +13,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0vvfm")
-bgm = ExtResource("2_m6fuu")
+bgm = ExtResource("2_6hhvi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6hhvi")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,3 +46,4 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_1vlek")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
